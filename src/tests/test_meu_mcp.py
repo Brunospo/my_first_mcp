@@ -51,3 +51,10 @@ async def testar_decrypt_message(mcp_session):
     )
 
     assert decrypt_result.structured_content["result"] == message
+
+
+@pytest.mark.anyio
+async def testar_list_resource(mcp_session):
+    """Testar a listagem de resources"""
+    resource = await mcp_session.list_resources()
+    assert resource.resources[0].uri == "encryption://info"
