@@ -79,3 +79,16 @@ Notes:
 - The key is derived automatically using the same PBKDF2 function with the static salt and configured number of iterations.
 - If the token has been corrupted or the passphrase is incorrect, decryption will fail due to HMAC invalidation or a padding error.
 """.strip()
+
+
+@server.prompt(
+    name="encrypt_message_prompt",
+    description="Prompt to encrypt a plain-text message using the encrypt_message tool",
+)
+def encrypt_message_prompt(message: str, encryption_key: str) -> str:
+    """
+    Args:
+        message: The message to encrypt
+        encryption_key: Any passphrase to use for encryption — the server derives a strong key from it automatically
+    """
+    return f"Please encrypt the following message using the encrypt_message tool.\nMessage: {message}\nEncryption key: {encryption_key}"

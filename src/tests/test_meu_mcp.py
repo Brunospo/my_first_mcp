@@ -58,3 +58,19 @@ async def testar_list_resource(mcp_session):
     """Testar a listagem de resources"""
     resource = await mcp_session.list_resources()
     assert resource.resources[0].uri == "encryption://info"
+
+
+@pytest.mark.anyio
+async def testar_encrypt_message_prompt(mcp_session):
+    """Testar o prompt de encriptar mensagens"""
+    result = await mcp_session.get_prompt(
+        name="encrypt_message_prompt",
+        arguments={"message": "Secret text", "encryption_key": "my_key"},
+    )
+
+    assert (
+        result.messages[0].content.text
+        == """Please encrypt the following message using the encrypt_message tool.
+Message: Secret text
+Encryption key: my_key"""
+    )
