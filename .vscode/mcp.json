@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "servidor-criptografia": {
+      "command": ".venv/bin/python",
+      "args": [
+        "src/mcp_do_zero/main.py"
+      ]
+    }
+  }
+}
